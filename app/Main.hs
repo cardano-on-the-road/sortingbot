@@ -56,9 +56,6 @@ main = do
                     when (Order `elem` flags) (startOrdering flags) 
                     when (Flat `elem` flags) (startFlatting flags)
                     when (Group `elem` flags)  (startGrouping flags)
-                    putStrLn ("FLAGS ==> " ++ (show flags))
-                    putStrLn ("ARGV ==> " ++ (show argv))
-                    putStrLn ("ARGS ==> " ++ (show args))
             else return ()
 
     where 

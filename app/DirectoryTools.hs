@@ -72,7 +72,7 @@ flatFilesystemTree' root node (x:xs) = do
                     c <- getAllContents x
                     flatFilesystemTree' root x c
                     flatFilesystemTree' root node xs
-                    removeDirectory x
+                    removePathForcibly x
                 else 
                     flatFilesystemTree' root node xs
 
@@ -91,8 +91,9 @@ cleanDirectory' (x:xs) root
     | (takeExtension' x == ".pdf"  ||  takeExtension' x == ".docx" ||  takeExtension' x == ".doc" ||  takeExtension' x == ".txt" ||  takeExtension' x == ".rtf" ||  takeExtension' x == ".pages")     = toFolder "DOCS"
     | (takeExtension' x == ".xlsx" ||  takeExtension' x == ".xlx"  ||  takeExtension' x == ".number")                                                                                                 = toFolder "CALC"
     |  takeExtension' x == ".ppt"                                                                                                                                                                     = toFolder "SLIDE"
-    |  takeExtension' x == ".zip"                                  = toFolder "ZIP"
-    |  takeExtension' x == ".mobi"                                 = toFolder "EBOOK"
+    |  takeExtension' x == ".zip"                                                                                                                                                                     = toFolder "ZIP"
+    | (takeExtension' x == ".mobi" || takeExtension' x == ".epub")                                                                                                                                    = toFolder "EBOOK"
+    | (takeExtension' x == ".exe" || takeExtension' x == ".dmg")                                                                                                                                      = toFolder "EXE" 
     |  otherwise = toFolder "UNKNOWN"
 
     where 
