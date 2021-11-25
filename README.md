@@ -28,7 +28,7 @@ The purpose of the Sortingbot is to give a command-line interface tool to manage
         [Download Binary](https://www.haskell.org/cabal/download.html)
         [Install WSL and then follow the point B](https://www.youtube.com/watch?v=X-DHaQLrBi8)
 
-2.  Clone this repository
+2.  Clone this repository ```git clone https://github.com/cardano-on-the-road/sortingbot.git```
 3.  Get into your local folder repository
 4.  Execute the command  ```cabal install```
 5.  Cabal will show you where the executable will be delivered. The path should be something like *"/Users/valeriomellini/.cabal/bin/sortingbot"*
@@ -36,19 +36,19 @@ The purpose of the Sortingbot is to give a command-line interface tool to manage
 
 ## Examples of usage 
 
-1. TO FLAT THE FILESYSTEM TREE INTO THE ROOT FOLDER 
+1. TO FLAT THE FILESYSTEM TREE INTO THE ROOT FOLDER <br> 
    sortingbot -F -r [ROOT_PATH] 
-2. TO FLAT AND ORDER THE FYLESYSTEM TREE UNDER THE ROOT
+2. TO FLAT AND ORDER THE FYLESYSTEM TREE UNDER THE ROOT <br>
    sortingbot -O -r [ROOT_PATH] 
-3. TO GROUP THE FILES THAT MATCH WITH THE SUBSTRING INTO A FOLDER
+3. TO GROUP THE FILES THAT MATCH WITH THE SUBSTRING INTO A FOLDER <br>
    cabal run sortingbot -G -f [FOLDER_NAME] -r [ROOT_PATH] -s [SUBSTRING]
 
 
 OPTIONS
-  -h              --help                     Show this help message and exit
-  -f FOLDER_NAME  --folder-name=FOLDER_NAME  The folder name where you want to group files (to use with -G)
-  -r ROOT_FOLDER  --root=ROOT_FOLDER         The root folder where you want to execute the ORDER, FLAT or GROUP process
-  -s SUBSTRING    --substring=SUBSTRING      Define the substring that match with the files you want to group
-  -O              --order                    Flag to enable the ORDER process
-  -F              --flat                     Flag to enable the FLAT process
-  -G              --group                    Flag to enable the GROUP function
+  -h              --help                     Show this help message and exit <br>
+  -f FOLDER_NAME  --folder-name=FOLDER_NAME  The folder name where you want to group files (to use with -G) <br>
+  -r ROOT_FOLDER  --root=ROOT_FOLDER         The root folder where you want to execute the ORDER, FLAT or GROUP process <br>
+  -s SUBSTRING    --substring=SUBSTRING      Define the substring that match with the files you want to group <br>
+  -O              --order                    Flag to enable the ORDER process <br>
+  -F              --flat                     Flag to enable the FLAT process <br>
+  -G              --group                    Flag to enable the GROUP function <br>
