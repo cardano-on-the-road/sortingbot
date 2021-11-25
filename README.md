@@ -30,8 +30,9 @@ The purpose of the Sortingbot is to give a command-line interface tool to manage
 
 2.  Clone this repository
 3.  Get into your local folder repository
-4.  Execute the command  ```cabal build```
-5.  Get your executable file into the *dist-newstyle* folder. The path should be something like *"./dist-newstyle/build/x86_64-osx/ghc-8.10.4/sortingbot-haskell-0.1.0.0/x/sortingbot/build/sortingbot/sortingbot'"*
+4.  Execute the command  ```cabal install```
+5.  Cabal will show you where the executable will be delivered. The path should be something like *"/Users/valeriomellini/.cabal/bin/sortingbot"*
+6.  (OPT) Add the cabal-bin folder into your environment variable to execute easier your Cabal bins. 
 
 ## Examples of usage 
 

@@ -91,7 +91,9 @@ cleanDirectory' (x:xs) root
     | (takeExtension' x == ".pdf"  ||  takeExtension' x == ".docx" ||  takeExtension' x == ".doc" ||  takeExtension' x == ".txt" ||  takeExtension' x == ".rtf" ||  takeExtension' x == ".pages")     = toFolder "DOCS"
     | (takeExtension' x == ".xlsx" ||  takeExtension' x == ".xlx"  ||  takeExtension' x == ".number")                                                                                                 = toFolder "CALC"
     |  takeExtension' x == ".ppt"                                                                                                                                                                     = toFolder "SLIDE"
-    | otherwise = toFolder "UNKNOWN"
+    |  takeExtension' x == ".zip"                                  = toFolder "ZIP"
+    |  takeExtension' x == ".mobi"                                 = toFolder "EBOOK"
+    |  otherwise = toFolder "UNKNOWN"
 
     where 
         takeExtension' :: String -> String
