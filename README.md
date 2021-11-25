@@ -1,0 +1,53 @@
+# Sortingbot
+
+The purpose of the Sortingbot is to give a command-line interface tool to manage and order a directory.
+
+
+
+## How execute it
+
+1. Install cabal on your machine
+    
+    a. 	**MacOS** 
+
+        ```bash
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        
+        brew install cabal-install 
+       ```
+
+	b. **Linux (Debian)**
+        
+        ```bash
+		sudo apt-get update -y
+		sudo apt-get install -y cabal-install
+        ````
+	
+	c. **Windows (Not tested)**
+        
+        [Download Binary](https://www.haskell.org/cabal/download.html)
+        [Install WSL and then follow the point B](https://www.youtube.com/watch?v=X-DHaQLrBi8)
+
+2.  Clone this repository
+3.  Get into your local folder repository
+4.  Execute the command  ```cabal build```
+5.  Get your executable file into the *dist-newstyle* folder. The path should be something like *"./dist-newstyle/build/x86_64-osx/ghc-8.10.4/sortingbot-haskell-0.1.0.0/x/sortingbot/build/sortingbot/sortingbot'"*
+
+## Examples of usage 
+
+1. TO FLAT THE FILESYSTEM TREE INTO THE ROOT FOLDER 
+   sortingbot -F -r [ROOT_PATH] 
+2. TO FLAT AND ORDER THE FYLESYSTEM TREE UNDER THE ROOT
+   sortingbot -O -r [ROOT_PATH] 
+3. TO GROUP THE FILES THAT MATCH WITH THE SUBSTRING INTO A FOLDER
+   cabal run sortingbot -G -f [FOLDER_NAME] -r [ROOT_PATH] -s [SUBSTRING]
+
+
+OPTIONS
+  -h              --help                     Show this help message and exit
+  -f FOLDER_NAME  --folder-name=FOLDER_NAME  The folder name where you want to group files (to use with -G)
+  -r ROOT_FOLDER  --root=ROOT_FOLDER         The root folder where you want to execute the ORDER, FLAT or GROUP process
+  -s SUBSTRING    --substring=SUBSTRING      Define the substring that match with the files you want to group
+  -O              --order                    Flag to enable the ORDER process
+  -F              --flat                     Flag to enable the FLAT process
+  -G              --group                    Flag to enable the GROUP function
