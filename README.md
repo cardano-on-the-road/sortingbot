@@ -10,23 +10,23 @@ The purpose of the Sortingbot is to give a command-line interface tool to manage
     
     a. 	**MacOS** 
 
-        ```bash
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        
-        brew install cabal-install 
-       ```
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    brew install cabal-install 
+    ```
 
 	b. **Linux (Debian)**
         
-        ```bash
-		sudo apt-get update -y
-		sudo apt-get install -y cabal-install
-        ````
+    ```bash
+    sudo apt-get update -y
+    sudo apt-get install -y cabal-install
+    ````
 	
 	c. **Windows (Not tested)**
         
-        [Download Binary](https://www.haskell.org/cabal/download.html)
-        [Install WSL and then follow the point B](https://www.youtube.com/watch?v=X-DHaQLrBi8)
+    [Download Binary](https://www.haskell.org/cabal/download.html)  <br> OR <br>
+    [Install WSL and then follow the point B](https://www.youtube.com/watch?v=X-DHaQLrBi8)
 
 2.  Clone this repository ```git clone https://github.com/cardano-on-the-road/sortingbot.git```
 3.  Get into your local folder repository
