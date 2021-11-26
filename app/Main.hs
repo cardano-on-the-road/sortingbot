@@ -25,11 +25,11 @@ options = [
 help:: String
 help = "Examples of Usage:\n\
         \1. TO FLAT THE FILESYSTEM TREE INTO THE ROOT FOLDER \n\ 
-        \   sortingbot -F -r [ROOT_PATH] \n\
+        \   -> sortingbot -F -r [ROOT_PATH] \n\
         \2. TO FLAT AND ORDER THE FYLESYSTEM TREE UNDER THE ROOT\n\
-        \   sortingbot -O -r [ROOT_PATH] \n\
+        \   -> sortingbot -O -r [ROOT_PATH] \n\
         \3. TO GROUP THE FILES THAT MATCH WITH THE SUBSTRING INTO A FOLDER\n\
-        \   cabal run sortingbot -G -f [FOLDER_NAME] -r [ROOT_PATH] -s [SUBSTRING]\n\n\n\
+        \   -> sortingbot -G -f [FOLDER_NAME] -r [ROOT_PATH] -s [SUBSTRING]\n\n\n\
         \OPTIONS"
 
 type Arg = String
@@ -78,7 +78,8 @@ main = do
         startOrdering:: [Flag] -> IO()
         startOrdering flags = do
             let root = getRoot flags
-            putStrLn ("ORDER PROCESS STARTED")
+            putStrLn ("ORDER PROCESS STARTED IN FOLDER -> " ++ root)
+            when (Prelude.length root == 0) (error ("ERROR -> THE ROOT FOLDER NOT DEFINED\n\n" ++ help))
             if (Prelude.length root > 0)
                 then do
                     flatFilesystemTree root
@@ -90,7 +91,8 @@ main = do
         startFlatting:: [Flag] ->IO()
         startFlatting flags = do
              let root = getRoot flags
-             putStrLn ("FLAT PROCESS STARTED ON FOLDER ->" ++ root)
+             putStrLn ("FLAT PROCESS STARTED IN FOLDER -> " ++ root)
+             when (Prelude.length root == 0) (error ("ERROR -> THE ROOT FOLDER NOT DEFINED\n\n" ++ help))
              when (Prelude.length root > 0) (flatFilesystemTree root)
              putStrLn ("FLAT PROCESS CLOSED")
 
@@ -100,12 +102,13 @@ main = do
              let folderName = getFolderName flags
              let substring = getSubString flags
              let root = getRoot flags
+             when (Prelude.length root == 0 || Prelude.length substring == 0 || Prelude.length folderName == 0) (error ("ERROR -> THE ARGUMENTS ARE NOT CORRECTLY DEFINED\n\n" ++ help))
              if (Prelude.length folderName > 0 && Prelude.length substring > 0 && Prelude.length root > 0)
                 then do
                     conditionalMoveInto substring folderName root
                 else
                     return ()
 
-             putStrLn ("GROUP PROCESS CLOSED" ++ substring ++ folderName)
+             putStrLn ("GROUP PROCESS CLOSED")
 
 

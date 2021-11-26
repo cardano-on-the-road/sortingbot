@@ -117,6 +117,7 @@ conditionalMoveInto' (x:xs) folderName root = do
     if (isFile)
         then do
             copyFile x (root ++ "/" ++ folderName ++ "/" ++(takeFileName x))
+            print ("File " ++ x ++ "moved into folder " ++ folderName)
             removeFile x
             conditionalMoveInto' xs folderName root
         else 
