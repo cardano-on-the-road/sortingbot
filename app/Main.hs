@@ -35,34 +35,32 @@ help = "Examples of Usage:\n\
 type Arg = String
 
 parseArgv:: [String] -> String -> [OptDescr Flag] -> ([Flag], [Arg])
-parseArgv argv help options = 
-    case getOpt Permute options argv of 
+parseArgv argv help options =
+    case getOpt Permute options argv of
         (flags, args, []) -> (flags, args)
         (_, _, errs) -> error $ Prelude.concat errs ++ help
 
 
 main :: IO ()
-main = do 
+main = do
     args <- getArgs
     let (flags, argv) = parseArgv args help options
-    if (Help `elem` flags || Prelude.null args) 
-        then 
-            (putStrLn $ usageInfo help options)
+    if Help `elem` flags || Prelude.null args
+        then
+            putStrLn $ usageInfo help options
         else do
-            putStrLn ("Are you sure (Y/n)?")
+            putStrLn "Are you sure (Y/n)?"
             r <- getLine
-            if (pack "y" == (toLower  (pack r)))
-                then do 
-                    when (Order `elem` flags) (startOrdering flags) 
+            when (pack "y" == toLower  (pack r)) $ do
+                    when (Order `elem` flags) (startOrdering flags)
                     when (Flat `elem` flags) (startFlatting flags)
                     when (Group `elem` flags)  (startGrouping flags)
-            else return ()
 
-    where 
+    where
 
         getRoot:: [Flag] -> String
         getRoot [] = ""
-        getRoot ((Root s):xs) = s 
+        getRoot ((Root s):xs) = s
         getRoot (x:xs) = getRoot xs
 
         getFolderName:: [Flag] -> String
@@ -79,36 +77,30 @@ main = do
         startOrdering flags = do
             let root = getRoot flags
             putStrLn ("ORDER PROCESS STARTED IN FOLDER -> " ++ root)
-            when (Prelude.length root == 0) (error ("ERROR -> THE ROOT FOLDER NOT DEFINED\n\n" ++ help))
-            if (Prelude.length root > 0)
-                then do
+            when (Prelude.null root) (error ("ERROR -> THE ROOT FOLDER NOT DEFINED\n\n" ++ help))
+            unless (Prelude.null root) $ do
                     flatFilesystemTree root
                     cleanDirectory root
-                else 
-                    return ()
-            putStrLn ("ORDER PROCESS CLOSED")
+            putStrLn "ORDER PROCESS CLOSED"
 
         startFlatting:: [Flag] ->IO()
         startFlatting flags = do
              let root = getRoot flags
              putStrLn ("FLAT PROCESS STARTED IN FOLDER -> " ++ root)
-             when (Prelude.length root == 0) (error ("ERROR -> THE ROOT FOLDER NOT DEFINED\n\n" ++ help))
-             when (Prelude.length root > 0) (flatFilesystemTree root)
-             putStrLn ("FLAT PROCESS CLOSED")
+             when (Prelude.null root) (error ("ERROR -> THE ROOT FOLDER NOT DEFINED\n\n" ++ help))
+             unless (Prelude.null root) (flatFilesystemTree root)
+             putStrLn "FLAT PROCESS CLOSED"
 
         startGrouping:: [Flag] ->IO()
         startGrouping flags = do
-             putStrLn ("GROUP PROCESS STARTED")
+             putStrLn "GROUP PROCESS STARTED"
              let folderName = getFolderName flags
              let substring = getSubString flags
              let root = getRoot flags
-             when (Prelude.length root == 0 || Prelude.length substring == 0 || Prelude.length folderName == 0) (error ("ERROR -> THE ARGUMENTS ARE NOT CORRECTLY DEFINED\n\n" ++ help))
-             if (Prelude.length folderName > 0 && Prelude.length substring > 0 && Prelude.length root > 0)
-                then do
+             if Prelude.null root || Prelude.null substring || Prelude.null folderName
+                 then error ("ERROR -> THE ARGUMENTS ARE NOT CORRECTLY DEFINED\n\n" ++ help)
+                 else
                     conditionalMoveInto substring folderName root
-                else
-                    return ()
-
-             putStrLn ("GROUP PROCESS CLOSED")
+             putStrLn "GROUP PROCESS CLOSED"
 
 
