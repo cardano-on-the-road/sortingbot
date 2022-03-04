@@ -8,8 +8,14 @@ import              Control.Monad
 
 import              DirectoryTools          (conditionalMoveInto, cleanDirectory, flatFilesystemTree)
 
-data Flag = Help | SubString String | FolderName String | Root FilePath| Order | Flat | Group
-    deriving (Show, Eq)
+import              Logger                  (logMessage)
+
+import              Types                   ( Flag(..), SortingBotState(..), SortingBotOutput(..) )                   
+
+import GHC.Conc (ThreadStatus(ThreadRunning))
+
+
+
 
 options:: [OptDescr Flag]
 options = [

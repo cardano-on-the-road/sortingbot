@@ -25,7 +25,9 @@ executable sortingbot
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
-    other-modules:    DirectoryTools
+    other-modules:    DirectoryTools,
+                      Logger,
+                      Types
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
@@ -33,6 +35,8 @@ executable sortingbot
                       directory >=1.3.6.0,
                       directory-tree>=0.12.1,
                       filepath>=1.4.2.1,
-                      text>=1.2.4.1
+                      text>=1.2.4.1,
+                      time >=1.9.3
+
     hs-source-dirs:   app
     default-language: Haskell2010
